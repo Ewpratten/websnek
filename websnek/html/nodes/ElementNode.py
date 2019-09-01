@@ -1,5 +1,5 @@
 class Node(object):
-    def __init__(self, name: str, attributes=[], children=[]):
+    def __init__(self, name: str, attributes={}, children=[]):
         self.name = name
         self.attributes = attributes
         self.children = children
@@ -9,3 +9,9 @@ class Node(object):
 
     def addData(self, data):
         self.children.append({"type": "data", "body": data})
+
+    def getID(self):
+        return self.attributes.get("id", "")
+    
+    def getClasses(self):
+        return self.attributes.get("class", "").split(" ")

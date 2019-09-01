@@ -3,6 +3,7 @@ import os
 
 from .css.parser import parseCSS
 from .html.parse import buildTree
+from .styletree.utils import buildStyleTree
 
 ap = argparse.ArgumentParser()
 ap.add_argument("document", help="HTML document to render")
@@ -31,10 +32,10 @@ if args.stylesheet != "__None__":
 else:
     style_file = ""
 
-# Parse the document
-# doc_parser = ElementTreeBuilder()
-# doc_parser.feed(doc_file)
+# Parse both HTML and CSS
+html_root_node = buildTree(doc_file)
+css_tree = parseCSS(style_file)
 
-
-buildTree(doc_file)
-print(parseCSS(style_file))
+# Build a style tree
+style_tree = buildStyleTree(html_root_node, css_tree)
+print(style_tree)
