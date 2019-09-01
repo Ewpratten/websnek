@@ -1,6 +1,7 @@
 import argparse
 import os
 
+from .css.parser import parseCSS
 from .html.parse import buildTree
 
 ap = argparse.ArgumentParser()
@@ -36,3 +37,4 @@ else:
 
 
 buildTree(doc_file)
+print(parseCSS(style_file))
